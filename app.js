@@ -1,11 +1,14 @@
-import mongoose from 'mongoose';
-import express from 'express';
-import config from 'config';
-import router from './router';
+const mongoose = require('mongoose');
+const express = require('express');
+const config = require('config');
+const router = require('./router');
+const bodyParser = require('body-parser');
 
 mongoose.connect(config.get('mongoUri'));
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res)=> {
     res.send({
